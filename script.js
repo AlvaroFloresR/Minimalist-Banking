@@ -351,19 +351,22 @@ btnLoan.addEventListener("click", function (e) {
     loanAmount > 0 &&
     currentAccount.movements.some((ele) => ele >= loanAmount * 0.1)
   ) {
-    // Add Registry of Loan
-    currentAccount.movements.push(loanAmount);
+    // Delay Loan
+    setTimeout(function () {
+      // Add Registry of Loan
+      currentAccount.movements.push(loanAmount);
 
-    // Add Transfer Date
-    currentAccount.movementsDates.push(new Date().toISOString());
+      // Add Transfer Date
+      currentAccount.movementsDates.push(new Date().toISOString());
 
-    // Display Movements and summary
-    updateUI(currentAccount);
+      // Display Movements and summary
+      updateUI(currentAccount);
 
-    // Clear Fields
-    inputLoanAmount.value = "";
+      // Clear Fields
+      inputLoanAmount.value = "";
+    }, 2500);
 
-    // Reset Timer
+    // Reset Timer Global
     clearInterval(globalTimer);
     globalTimer = startLogOutTimer();
   }
